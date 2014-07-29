@@ -1,0 +1,1171 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:dol="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns="http://www.owl-ontologies.com/Ontology1321454521.owl#"
+  xml:base="http://www.owl-ontologies.com/Ontology1321454521.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl"/>
+  </owl:Ontology>
+  <owl:Class rdf:ID="NaturalSuperficialWater">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SuperficialWater"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CivilProtection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Agent"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="useAndNeed"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="FloodWave"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#useAndNeed"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="DischargeDepth"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SingleAtmosphericHazard">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AtmosphericHazard"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="es">Elementos atmosféricos sencillos.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Device">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-object"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Weir">
+    <rdfs:label xml:lang="en">weir</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SoilTransformationAndConstruction"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EmbankmentBreak">
+    <rdfs:label xml:lang="en">embankment break</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="StructuralHazard"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Forecasting">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AssessmentReportOrProcedure"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">forecasting</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="SuperficialWaterDischargeFlow">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="WaterDischarge"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="dischargeAffectedBy"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="CatchmentArea"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#CatchmentArea"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#dischargeAffectedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasCharacterizingIndicator"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#DischargeDepth"/>
+              <owl:Class rdf:ID="DischargeVelocity"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#DischargeVelocity"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#DischargeDepth"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:ID="WaterRegulation"/>
+              <owl:Class rdf:about="#NaturalSuperficialWater"/>
+              <owl:Class rdf:ID="ArtificialWaters"/>
+              <owl:Class rdf:ID="Rainfall"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="dischargeProducedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Discharge of the superficial water flow</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="HydraulicHazardAssessment">
+    <rdfs:label xml:lang="en">hydraulic hazard assessment</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AssessmentReportOrProcedure"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RainfallDepth">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="RainfallAnalisysParameter"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isObtainedWith"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class rdf:ID="RainDevice"/>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#RainDevice"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#AtmosphericHazard">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Peligros originados por fenómenos atmosféricos.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="NaturalProcess"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#RainDevice">
+    <rdfs:label xml:lang="en">device to measure rain data</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#Device"/>
+  </owl:Class>
+  <owl:Class rdf:about="#WaterRegulation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="TrafficChanges"/>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="BypassWeir"/>
+          <owl:Class rdf:about="#Weir"/>
+          <owl:Class rdf:ID="ArtificialCanal"/>
+          <owl:Class rdf:ID="Dam"/>
+          <owl:Class rdf:ID="Embankments"/>
+          <owl:Class rdf:ID="StorageTank"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="HistoricalRainfallSeries">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="DataSource"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#RainDevice"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Actions">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ImpactingActions"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en">Based on actions of Leopold matrix.</rdfs:comment>
+    <rdfs:comment xml:lang="es">Basado en las acciones según la matriz de Leopold.</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="HazardMap">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Model"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RainfallModel">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Model"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ProtectionOfGoods">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="MitigatingAction"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SyntethicHistoricalRainfallSeries">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="RainfallStatisticalAnalisys"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#RainDevice"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EnvironmentalFactor">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Elementos del medio susceptibles de impacto</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#physical-endurant"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SuperficialWater">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Water"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en">means inland waters, except groundwater; transitional waters and coastal waters, except in respect of chemical status for which it shall also include territorial waters</rdfs:comment>
+    <rdfs:comment xml:lang="es">Clasificada de acuerdo con la directiva europea 200/60/CE: las aguas continentales, excepto las aguas subterráneas; las aguas de transición y las aguas costeras, y, en lo que se refiere al estado químico, también las aguas territoriales</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#FloodWave">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Model"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Evacuation">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#MitigatingAction"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="actionManagedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#CivilProtection"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#MitigatingAction">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Management"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">mitigating action</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="HydrologicalHazardAssessment">
+    <rdfs:label xml:lang="en">hydrological hazard assessment</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#AssessmentReportOrProcedure"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="TechnologicHazard">
+    <rdfs:comment xml:lang="es">Peligros originados por accidentes derivados de la tecnología</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#NaturalProcess"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HydrologicalHazard">
+    <rdfs:comment xml:lang="es">Peligros originados en los fenómenos meteorológicos</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#NaturalProcess"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Water">
+    <rdfs:comment xml:lang="es">Agua</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#EnvironmentalFactor"/>
+  </owl:Class>
+  <owl:Class rdf:ID="PublicInvolvement">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#accomplishment"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label xml:lang="en">public involvement</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="CatchmentTotalArea">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="CatchmentIndicator"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">catchment area</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#StorageTank">
+    <rdfs:label xml:lang="en">water storage tank</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SoilTransformationAndConstruction"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="IDF">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallStatisticalAnalisys"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isParametrizedBy"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:ID="RainfallIntensity"/>
+              <owl:Class rdf:ID="RainfallDuration"/>
+              <owl:Class rdf:ID="RainfallFrequency"/>
+              <owl:Class rdf:ID="ReturnPeriod"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#RainfallFrequency"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParametrizedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParametrizedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#RainfallDuration"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#RainfallIntensity"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParametrizedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#RainfallIntensity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallAnalisysParameter"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#RainDevice"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#RainDevice"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RecoveryAction">
+    <rdfs:label xml:lang="en">recovery action</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Management"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CivilProtection"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actionManagedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#AssessmentReportOrProcedure">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#accomplishment"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Embankments">
+    <rdfs:label xml:lang="en">embankments</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Barrier"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="VulneravilityAssessment">
+    <rdfs:subClassOf rdf:resource="#AssessmentReportOrProcedure"/>
+    <rdfs:label xml:lang="en">vulnerativity assessment</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="TimeOfConcentration">
+    <rdfs:label xml:lang="en">time of concentration</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#CatchmentIndicator"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Socioeconomic">
+    <rdfs:comment xml:lang="es">Elementos socioeconómicos</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#EnvironmentalFactor"/>
+  </owl:Class>
+  <owl:Class rdf:about="#NaturalProcess">
+    <rdfs:comment xml:lang="es">Procesos naturales</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ImpactingActions"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#BypassWeir">
+    <rdfs:label xml:lang="en">bypass weir</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SoilTransformationAndConstruction"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ImpactingActions">
+    <rdfs:comment xml:lang="es">Acciones o actividades que producen impacto</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#perdurant"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#StructuralHazard">
+    <rdfs:label xml:lang="en">structural hazard</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#TechnologicHazard"/>
+  </owl:Class>
+  <owl:Class rdf:about="#WaterDischarge">
+    <rdfs:subClassOf rdf:resource="#HydrologicalHazard"/>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#SuperficialWaterDischargeFlow"/>
+          <owl:Class rdf:ID="GroundWaterDischargeFlow"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#RainfallDuration">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallAnalisysParameter"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#RainDevice"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#RainDevice"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="EconomicEvaluation">
+    <rdfs:subClassOf rdf:resource="#AssessmentReportOrProcedure"/>
+    <rdfs:label xml:lang="en">economic evaluation</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="FreshwaterFlood">
+    <rdfs:comment xml:lang="en">Flood due to rivers, lakes or broken dams</rdfs:comment>
+    <rdfs:comment xml:lang="es">Inundación de agua dulce debida a ríos,lagos o rupturas de presas</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#achievement"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="rootBriefModel"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#SuperficialWaterDischargeFlow"/>
+              <owl:Class rdf:ID="BridgeOcclusion"/>
+              <owl:Class rdf:about="#EmbankmentBreak"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="floodProduceBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:ID="TownPlanning"/>
+              <owl:Class rdf:ID="EarlyWarning"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasPreventiveAction"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasMitigatingAction"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#Evacuation"/>
+              <owl:Class rdf:ID="HousesProtection"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasRecoveryAction"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#RecoveryAction"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#CatchmentIndicator">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="IndicatorsAndMeasureUnits"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">catchment area indicator</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#DischargeVelocity">
+    <rdfs:label xml:lang="en">discharge velocity</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="DischargeIndicator"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Agent">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#non-physical-object"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Management">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#RecoveryAction"/>
+          <owl:Class rdf:about="#MitigatingAction"/>
+          <owl:Class rdf:ID="PreventiveAction"/>
+        </owl:unionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#perdurant"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="ByMeanOf"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#VulneravilityAssessment"/>
+              <owl:Class rdf:about="#EconomicEvaluation"/>
+              <owl:Class rdf:about="#PublicInvolvement"/>
+              <owl:Class rdf:about="#HydraulicHazardAssessment"/>
+              <owl:Class rdf:about="#Forecasting"/>
+              <owl:Class rdf:ID="DecisionMaking"/>
+              <owl:Class rdf:ID="TopographicHazardAssessment"/>
+              <owl:Class rdf:about="#HydrologicalHazardAssessment"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">management action</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="LongTermPreventiveAction">
+    <rdfs:comment xml:lang="en">long term preventive action</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#PreventiveAction"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="LandSlope">
+    <rdfs:subClassOf rdf:resource="#CatchmentIndicator"/>
+    <rdfs:label xml:lang="en">land slope</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#HousesProtection">
+    <rdfs:subClassOf rdf:resource="#ProtectionOfGoods"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Municipality">
+    <rdfs:subClassOf rdf:resource="#Agent"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#HazardMap"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#useAndNeed"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="DDF">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallStatisticalAnalisys"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParametrizedBy"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#RainfallDepth"/>
+              <owl:Class rdf:about="#RainfallDuration"/>
+              <owl:Class rdf:about="#RainfallFrequency"/>
+              <owl:Class rdf:about="#ReturnPeriod"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#RainfallFrequency"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParametrizedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#RainfallDuration"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParametrizedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParametrizedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#RainfallDepth"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#Model">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#non-physical-object"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#PreventiveAction">
+    <rdfs:comment xml:lang="en">Actions to intend to stop or reduce the environmental damage before it happen.</rdfs:comment>
+    <rdfs:comment xml:lang="es">Medida preventiva: Toda medida adoptada en respuesta a un suceso, acto  omisión que haya supuesto una amenaza inminente de daño medioambiental, con objteto de impedir o reducir al máximo dicho daño.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Management"/>
+  </owl:Class>
+  <owl:Class rdf:ID="ShortTermPreventiveAction">
+    <rdfs:subClassOf rdf:resource="#PreventiveAction"/>
+    <rdfs:label xml:lang="en">short term preventive action</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#Barrier">
+    <rdfs:comment xml:lang="es">Structure used to obstruct passage in a given direction</rdfs:comment>
+    <rdfs:comment xml:lang="en">Barreras, incluidas los vallados. Obstáculos físicos que impiden el paso</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SoilTransformationAndConstruction"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ReturnPeriod">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#RainfallAnalisysParameter"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ArtificialCanal">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ArtificialWaters"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SoilTransformationAndConstruction"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="es">Canal. Vía artificial de agua hecha por el hombre</rdfs:comment>
+    <rdfs:comment xml:lang="en">Waterways, usually connected to existing lakes, rivers, or oceans</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="LandSurface">
+    <rdfs:comment xml:lang="es">Superficie terrestre</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#EnvironmentalFactor"/>
+  </owl:Class>
+  <owl:Class rdf:about="#RainfallAnalisysParameter">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isParameterOf"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#RainfallStatisticalAnalisys"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Parameter"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#RainfallStatisticalAnalisys"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isParameterOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#DischargeDepth">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#DischargeIndicator"/>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">discharge depth</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#ArtificialWaters">
+    <rdfs:comment xml:lang="en">body of surface water created by human activity</rdfs:comment>
+    <rdfs:comment xml:lang="es">Aguas artificiales: una masa de agua superficial creada por la actividad humana</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#SuperficialWater"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TopographicHazardAssessment">
+    <rdfs:label xml:lang="en">topographic hazard assessment</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#AssessmentReportOrProcedure"/>
+  </owl:Class>
+  <owl:Class rdf:about="#DataSource">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="isDataSourceOf"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#non-physical-object"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Parameter">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#quality"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#BridgeOcclusion">
+    <rdfs:label xml:lang="en">bridge occlusion</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#HydrologicalHazard"/>
+  </owl:Class>
+  <owl:Class rdf:about="#IndicatorsAndMeasureUnits">
+    <rdfs:comment xml:lang="es">Indicadores y unidades de medida. De acuerdo con Barettino Fraile, Daniel</rdfs:comment>
+    <rdfs:comment xml:lang="en">Indicators and measure units, acording to Baretino Fraile, Daniel</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#quality"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Imperviousness">
+    <rdfs:subClassOf rdf:resource="#CatchmentIndicator"/>
+    <rdfs:label xml:lang="en">imperviousness</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#DischargeIndicator">
+    <rdfs:subClassOf rdf:resource="#IndicatorsAndMeasureUnits"/>
+    <rdfs:label xml:lang="en">discharge indicator</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#EarlyWarning">
+    <rdfs:subClassOf rdf:resource="#ShortTermPreventiveAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actionManagedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#CivilProtection"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">EarlyWarning</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#RainfallFrequency">
+    <rdfs:subClassOf rdf:resource="#RainfallAnalisysParameter"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+        <owl:allValuesFrom rdf:resource="#RainDevice"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#RainDevice"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#TrafficChanges">
+    <rdfs:comment xml:lang="es">Cambios en el tráfico. Flujo de vehículos motorizados, no motorizados y peatones</rdfs:comment>
+    <rdfs:comment xml:lang="en">Movement of motorized vehicles, unmotorized vehicles and pedestrians</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Actions"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Rainfall">
+    <rdfs:comment xml:lang="es">Cantidad de precipitación de cualquier tipo, generalmente agua. Se suele medir utilizando un manómetro</rdfs:comment>
+    <rdfs:comment xml:lang="en">The amount of precipitation of any type, primary liquid. It is usually the amount that is measured by a rain gauge</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="rainfallCharacterizedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#DDF"/>
+              <owl:Class rdf:about="#IDF"/>
+              <owl:Class rdf:about="#SyntethicHistoricalRainfallSeries"/>
+              <owl:Class rdf:ID="DesignHyetographs"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="#SingleAtmosphericHazard"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#DDF"/>
+              <owl:Class rdf:about="#IDF"/>
+              <owl:Class rdf:about="#SyntethicHistoricalRainfallSeries"/>
+              <owl:Class rdf:about="#DesignHyetographs"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#rainfallCharacterizedBy"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#rainfallCharacterizedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#DDF"/>
+              <owl:Class rdf:about="#IDF"/>
+              <owl:Class rdf:about="#SyntethicHistoricalRainfallSeries"/>
+              <owl:Class rdf:about="#DesignHyetographs"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#DesignHyetographs">
+    <rdfs:subClassOf rdf:resource="#RainfallModel"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#RainDevice"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#isObtainedWith"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasDataSource"/>
+        </owl:onProperty>
+        <owl:allValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#DDF"/>
+              <owl:Class rdf:about="#IDF"/>
+              <owl:Class rdf:about="#SyntethicHistoricalRainfallSeries"/>
+              <owl:Class rdf:about="#HistoricalRainfallSeries"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:allValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:unionOf rdf:parseType="Collection">
+              <owl:Class rdf:about="#DDF"/>
+              <owl:Class rdf:about="#IDF"/>
+              <owl:Class rdf:about="#SyntethicHistoricalRainfallSeries"/>
+              <owl:Class rdf:about="#HistoricalRainfallSeries"/>
+            </owl:unionOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasDataSource"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="characterizeRainfall"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Rainfall"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#GroundWaterDischargeFlow">
+    <rdfs:comment xml:lang="es">Descarga del flujo de agua subterranea</rdfs:comment>
+    <rdfs:comment xml:lang="en">Discharge of the groundwater flow</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#WaterDischarge"/>
+  </owl:Class>
+  <owl:Class rdf:ID="LandUse">
+    <rdfs:comment xml:lang="es">Uso del suelo</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Socioeconomic"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SoilTransformationAndConstruction">
+    <rdfs:subClassOf rdf:resource="#Actions"/>
+    <rdfs:comment xml:lang="es">Transformación del suelo y construcción</rdfs:comment>
+    <rdfs:comment xml:lang="en">Soil transformation and construction</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#CatchmentArea">
+    <rdfs:label xml:lang="en">catchment area</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#LandSurface"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#LandUse"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#CatchmentTotalArea"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="RunoffCoeficient"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#TimeOfConcentration"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Imperviousness"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#LandSlope"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#RunoffCoeficient">
+    <rdfs:label xml:lang="en">runoff coeficient</rdfs:label>
+    <rdfs:subClassOf rdf:resource="#CatchmentIndicator"/>
+  </owl:Class>
+  <owl:Class rdf:about="#DecisionMaking">
+    <rdfs:subClassOf rdf:resource="#AssessmentReportOrProcedure"/>
+    <rdfs:label xml:lang="en">decision making</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:about="#RainfallStatisticalAnalisys">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="StatisticalAnalisys"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Rainfall"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#characterizeRainfall"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#characterizeRainfall"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Rainfall"/>
+      </owl:Restriction>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:about="#Dam">
+    <rdfs:label xml:lang="en">dam</rdfs:label>
+    <rdfs:comment xml:lang="en">Presa y embalsamiento. Estructura construida en un caudal, río o estuario para retener el agua</rdfs:comment>
+    <rdfs:comment xml:lang="es">Structure built across a stream, river or estuary to retain water</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#SoilTransformationAndConstruction"/>
+  </owl:Class>
+  <owl:Class rdf:about="#StatisticalAnalisys">
+    <rdfs:subClassOf rdf:resource="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#non-physical-object"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="#TownPlanning">
+    <rdfs:subClassOf rdf:resource="#LongTermPreventiveAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#actionManagedBy"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#Municipality"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label xml:lang="en">town planning</rdfs:label>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#isDataSourceOf">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#hasDataSource"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#dischargeAffectedBy">
+    <rdfs:domain rdf:resource="#WaterDischarge"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#actionManagedBy">
+    <rdfs:range rdf:resource="#Agent"/>
+    <rdfs:domain rdf:resource="#Management"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isParametrizedBy">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#isParameterOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isObtainedWith">
+    <rdfs:range rdf:resource="#Device"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasPreventiveAction">
+    <rdfs:range rdf:resource="#PreventiveAction"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasRecoveryAction">
+    <rdfs:range rdf:resource="#RecoveryAction"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isCharacterizingIndicatorOf">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#IndicatorsAndMeasureUnits"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#rainfallCharacterizedBy">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#characterizeRainfall"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Rainfall"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasMitigatingAction">
+    <rdfs:range rdf:resource="#MitigatingAction"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#dischargeProducedBy">
+    <rdfs:domain rdf:resource="#WaterDischarge"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="produceDischarge"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#ImpactingActions"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#floodProduceBy">
+    <rdfs:domain rdf:resource="#HydrologicalHazard"/>
+    <rdfs:range rdf:resource="#ImpactingActions"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="produceFlood"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasDataSource">
+    <owl:inverseOf rdf:resource="#isDataSourceOf"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isParameterOf">
+    <owl:inverseOf rdf:resource="#isParametrizedBy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasCharacterizingIndicator">
+    <owl:inverseOf rdf:resource="#isCharacterizingIndicatorOf"/>
+    <rdfs:range rdf:resource="#IndicatorsAndMeasureUnits"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#produceFlood">
+    <owl:inverseOf rdf:resource="#floodProduceBy"/>
+    <rdfs:range rdf:resource="#HydrologicalHazard"/>
+    <rdfs:domain rdf:resource="#ImpactingActions"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="produce"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#produceDischarge">
+    <rdfs:subPropertyOf rdf:resource="#produce"/>
+    <rdfs:domain rdf:resource="#ImpactingActions"/>
+    <rdfs:range rdf:resource="#WaterDischarge"/>
+    <owl:inverseOf rdf:resource="#dischargeProducedBy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#characterizeRainfall">
+    <rdfs:range rdf:resource="#Rainfall"/>
+    <owl:inverseOf rdf:resource="#rainfallCharacterizedBy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#useAndNeed">
+    <rdfs:domain rdf:resource="#Agent"/>
+  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="hasAnastosomeStream">
+    <rdfs:domain rdf:resource="#NaturalSuperficialWater"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="hasStraightStream">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#NaturalSuperficialWater"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="hasBraidedStream">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#NaturalSuperficialWater"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="hasMeanderingStream">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#NaturalSuperficialWater"/>
+  </owl:DatatypeProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.1, Build 536)  http://protege.stanford.edu -->
